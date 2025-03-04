@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import "./Weather.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -12,10 +13,15 @@ export default function Weather() {
               type="search"
               placeholder="enter a city"
               className="form-control"
+              autoFocus="on"
             />
           </div>
           <div className="col-3">
-            <input type="submit" value="search" className="btn btn-primary" />
+            <input
+              type="submit"
+              value="search"
+              className="btn btn-primary w-100"
+            />
           </div>
         </div>
       </form>
@@ -31,7 +37,8 @@ export default function Weather() {
             src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
             alt="weather-icon"
           />
-          8°C|°F
+          <span className="Temperature">8</span>{" "}
+          <span className="Unit"> °C|°F</span>
         </div>
         <div className="col-6">
           <ul>
