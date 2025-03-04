@@ -24,7 +24,7 @@ export default function Weather(props) {
   }
 
   function search() {
-    const apiKey = "tf315a00255a026o44c386706557b731";
+    const apiKey = "72bb9dab46b9ec3d65f423c63f27a9b8"; // Ensure this is a valid key
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
@@ -38,35 +38,39 @@ export default function Weather(props) {
     search();
   }
 
-  if (weatherData.ready) {
-    return (
-      <div className="Weather">
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-9">
-              <input
-                type="search"
-                placeholder="Enter a city.."
-                className="form-control"
-                autoFocus
-                onChange={handleCityChange}
-              />
-            </div>
-            <div className="col-3">
-              <input
-                type="submit"
-                value="Search"
-                className="btn btn-primary w-100"
-              />
-            </div>
-          </div>
-        </form>
-        <WeatherInfo data={weatherData} />
-        <WeatherForecast2 coordinates={weatherData.coord} />
-      </div>
-    );
-  } else {
+  // 🔹 Call search() only once when component loads
+  if (!weatherData.ready) {
     search();
-    return "Loading...";
+    return <p>Loading...</p>;
   }
+
+  return (
+    <div className="Weather">
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col-9">
+            <input
+              type="search"
+              placeholder="Enter a city.."
+              className="form-control"
+              autoFocus
+              onChange={handleCityChange}
+            />
+          </div>
+          <div className="col-3">
+            <input
+              type="submit"
+              value="Search"
+              className="btn btn-primary w-100"
+            />
+          </div>
+        </div>
+      </form>
+      <WeatherInfo data={weatherData} />
+      <WeatherForecast2
+        coordinates={weatherData.coord}
+        className="WeatherInfo"
+      />
+    </div>
+  );
 }

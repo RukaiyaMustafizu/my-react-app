@@ -7,9 +7,11 @@ import "./WeatherForecast.css";
 
 function App() {
   return (
-    <div className="App">
-      <Weather defaultCity="Tilburg" /> {/* You can set a default city */}
-    </div>
+    <body>
+      <div className="App">
+        <Weather defaultCity="Tilburg" /> {/* You can set a default city */}
+      </div>
+    </body>
   );
 }
 
